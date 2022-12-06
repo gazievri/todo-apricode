@@ -2,11 +2,8 @@ import './Register.sass';
 import React, { useState } from 'react';
 import {register} from '../../utils/api.ts';
 import {NavLink, useNavigate} from 'react-router-dom'
-import userStore from '../../store/user.ts'
 
-interface IRegisterProps {
-
-}
+interface IRegisterProps {}
 
 const Register: React.FC<IRegisterProps> = () => {
 
