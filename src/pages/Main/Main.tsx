@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import TodoList from '../../components/TodoList.tsx/TodoList.tsx';
 import AddTodo from '../../components/AddTodo/AddTodo.tsx';
 import { getTodos, activateFilterApi } from '../../utils/api.ts';
-import todosStore from '../../store/todo.js';
+import todosStore from '../../store/todo.ts';
 import {toJS} from 'mobx'
 import {observer} from 'mobx-react-lite';
 

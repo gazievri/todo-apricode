@@ -1,7 +1,7 @@
 import React from 'react';
 import './TodoList.sass';
 import TodoItem from '../TodoItem/TodoItem.tsx';
-import todoStore from '../../store/todo'
+import todoStore from '../../store/todo.ts'
 import {toJS} from 'mobx'
 import {observer} from 'mobx-react-lite'
 

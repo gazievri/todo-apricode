@@ -2,7 +2,7 @@ import React from 'react';
 import { ITodo } from '../../types/data';
 import './TodoItem.sass';
 import { useRef } from 'react'
-import todosStore from '../../store/todo.js'
+import todosStore from '../../store/todo.ts'
 import { observer } from 'mobx-react-lite'
 import { deleteTodoApi, changeStatusTodoApi } from '../../utils/api.ts'
 import { toJS } from 'mobx'

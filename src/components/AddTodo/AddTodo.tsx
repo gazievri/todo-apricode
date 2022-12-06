@@ -3,7 +3,7 @@ import './AddTodo.sass';
 import { useState, useRef, useEffect } from 'react'
 import { ITodo } from '../../types/data';
 import { sendTodo } from '../../utils/api.ts';
-import todosStore from '../../store/todo.js'
+import todosStore from '../../store/todo.ts'
 
 interface IAddTodoProps {
   isOpened: boolean,
