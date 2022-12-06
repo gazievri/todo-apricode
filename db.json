@@ -1,24 +1,26 @@
 {
+  "users": [
+    {
+      "email": "email2@hedgtasker.com",
+      "password": "$2a$10$nB/23M4GxdL1tS..tavnxOj8Dfq6iGAV8h91QymOzjDKraWSLRTYq",
+      "id": 1
+    }
+  ],
   "todos": [
     {
       "id": 1670288325502,
       "title": "Test",
-      "complete": false
+      "complete": true
     },
     {
       "id": 1670288336859,
       "title": "Again",
       "complete": false
-    }
-  ],
-  "users": [
-    {
-      "name": "Ruslan",
-      "email": "my@e-mail.com",
-      "password": "777"
     },
     {
-      "name": "John"
+      "id": 1670310473931,
+      "title": "World",
+      "complete": false
     }
   ]
 }

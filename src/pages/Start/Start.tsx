@@ -2,15 +2,17 @@ import React from 'react';
 import Login from '../../components/Login/Login.tsx';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../utils/api.ts';
+import { IUser } from '../../types/user';
 
 const Start: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleLogin = (email: string, password: string) => {
-    // login(email, password)
-    // .then(() => navigate('/main'))
-    // .catch(err => console.log(err))
-    navigate('/main')
+  const handleLogin = (userData: IUser) => {
+    login(userData)
+    .then((res) => {
+      navigate('/todos')
+    })
+    .catch(err => console.log(err))
   }
 
   return (

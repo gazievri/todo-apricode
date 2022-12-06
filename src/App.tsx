@@ -4,18 +4,19 @@ import Header from "./layouts/Header/Header.tsx";
 import Footer from "./layouts/Footer/Footer.tsx";
 import Start from "./pages/Start/Start.tsx";
 import Main from "./pages/Main/Main.tsx";
-import NotFound from "./pages/NotFound/NotFound.tsx";
 import { Routes, Route } from "react-router-dom";
 import React from 'react';
+import Register from './components/Register/Register.tsx';
 
-const App: React.FC = () =>  {
+const App: React.FC = () => {
+  
   return (
     <div className="app">
       <Header />
       <Routes>
           <Route element={<Start />} path="/" />
           <Route element={<Main />} path="todos" />
-          <Route element={<NotFound />} path="*" />
+          <Route element={<Register />} path="/register"/>
       </Routes>
       <Footer />
     </div>

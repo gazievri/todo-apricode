@@ -1,9 +1,15 @@
 import './Login.sass';
 import React, { useState } from 'react';
+import { IUser } from '../../types/user';
+import {NavLink} from 'react-router-dom'
 
-const Login: React.FC = ({ handleLogin }) => {
+interface ILoginProps {
+  handleLogin: (data: IUser) => void,
+}
 
-  const [userData, setUserData] = useState({});
+const Login: React.FC<ILoginProps> = ({ handleLogin }) => {
+
+  const [userData, setUserData] = useState({email: '', password: ''});
 
   // Обновляю данные пользователя при изменений значений пароля или email
   const handleChange = (e: { target: { name: string; value: string; }; }) => {
@@ -14,12 +20,12 @@ const Login: React.FC = ({ handleLogin }) => {
   // Обработка события submit
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault()
-    handleLogin(email, password)
+    handleLogin(userData)
   }
 
   return (
     <form className="login" name="login" onSubmit={handleSubmit}>
-      <h2 className='login__title'>Please, sign in</h2>
+      <h2 className='login__title'>WELCOME</h2>
       <label className="login__label">
         Email
         <input type="email" name="email" className='login__input' required placeholder='my@e-mail.com' onChange={handleChange} />
@@ -28,7 +34,11 @@ const Login: React.FC = ({ handleLogin }) => {
         Password
         <input type="password" name="password" className='login__input' required placeholder='Enter password' onChange={handleChange} />
       </label>
-      <button className='login__button'>Login</button>
+      <button className='login__button'>Sign In</button>
+      <div className='login__text-block'>
+        <p className='login__text'>Haven't registered?</p>
+        <NavLink className="login__link-signup" to='/register'>Sign Up</NavLink>
+      </div>
     </form>
   )
 }

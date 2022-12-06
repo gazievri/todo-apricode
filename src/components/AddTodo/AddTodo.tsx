@@ -3,6 +3,7 @@ import './AddTodo.sass';
 import { useState, useRef, useEffect } from 'react'
 import { ITodo } from '../../types/data';
 import { sendTodo } from '../../utils/api.ts';
+import sortTodos from '../../utils/sortTodos.ts';
 
 interface IAddTodoProps {
   isOpened: boolean,
@@ -29,32 +30,19 @@ const AddTodo: React.FC<IAddTodoProps> = ({ isOpened, setTodos, todos, setIsOpen
 
       sendTodo(todo)
       .then(res => {
-
         // Добавление нового Todo массив
         newTodos = [...todos, {
         id: Date.now(),
         title: value,
         complete: false
-      }];
-
+        }];
         // Сортировка массива Todos
-        newTodos = newTodos.sort(function (a, b) {
-        if (a.complete > b.complete) {
-          return 1;
-        }
-        if (a.complete < b.complete) {
-          return -1;
-        }
-        return 0;
-      });
-
-      setTodos(newTodos);
-      setValue("");
-      setIsOpened(false);
-
+        sortTodos(newTodos)
+        setTodos(newTodos);
+        setValue("");
+        setIsOpened(false);
       })
-    .catch(err => console.log(err))
-
+      .catch(err => console.log(err))
     }
   }
 
