@@ -21,7 +21,6 @@ const Register: React.FC<IRegisterProps> = () => {
     e.preventDefault()
     register(userData)
     .then((res) => {
-      console.log(res);
 
       navigate('/');
     })
@@ -41,7 +40,7 @@ const Register: React.FC<IRegisterProps> = () => {
       </label>
       <button className='register__button'>Sign Up</button>
       <div className='register__text-block'>
-        <p className='register__text'>All ready registered?</p>
+        <p className='register__text'>Already registered?</p>
         <NavLink className="register__link-signin" to='/'>Sign In</NavLink>
       </div>
     </form>
