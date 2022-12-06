@@ -13,11 +13,11 @@ const TodoList: React.FC<ITodoListProps> = (props) => {
   const {items, toggleTodo, deleteTodo} = props;
 
   return (
-    <div>
+    <ul className='todo-list__container'>
       {
         items.map(todo => <TodoItem key={todo.id} {...todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />)
       }
-    </div>
+    </ul>
   )
 }
 

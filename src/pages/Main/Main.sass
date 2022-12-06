@@ -1,2 +1,63 @@
 .main
-  
+  margin: 2rem auto 0
+  display: flex
+  flex-direction: column
+  gap: 2rem
+  max-width: 500px
+  width: 100%
+
+.main__add-block
+  display: flex
+  gap: 1rem
+  align-self: center
+
+.main__header
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.main__info
+  display: flex
+  gap: 0.5rem
+  align-items: center
+
+.main__info-icon
+  background-image: url('../../assets/images/all-done.svg')
+  background-size: 30px 30px
+  width: 30px
+  height: 30px
+
+.main__info-data
+  font-size: 14px
+  margin: 0
+
+.main__add-btn
+  background-image: url('../../assets/images/add.svg')
+  background-repeat: no-repeat
+  background-position: center
+  border: none
+  background-size: 30px 30px
+  width: 30px
+  height: 30px
+  background-color: transparent
+  padding: 0
+  transition: 0.3s
+
+.main__add-btn:hover
+  cursor: pointer
+  opacity: .6
+
+.main__filters
+  display: flex
+  gap: 0.5rem
+
+.main__filter
+  background-color: white
+  border: 1.5px solid black
+  width: 55px
+  transition: 0.3s
+  border-radius: 5px
+
+.main__filter:hover
+  cursor: pointer
+  opacity: .6

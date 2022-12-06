@@ -1,16 +1,14 @@
 {
-  "posts": [
+  "todos": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": 1670288325502,
+      "title": "Test",
+      "complete": false
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 1670288336859,
+      "title": "Again",
+      "complete": false
     }
   ],
   "users": [

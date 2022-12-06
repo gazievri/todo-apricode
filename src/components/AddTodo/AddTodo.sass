@@ -1,0 +1,49 @@
+.add-todo
+  display: none
+  position: absolute
+  width: 100vw
+  height: 100vh
+  background-color: rgba(0, 0, 0, 0.5)
+  top: 0
+  left: 0
+
+.add-todo_opened
+  display: flex
+
+.add-todo__container
+  position: relative
+  margin: 10rem auto 0
+  background-color: white
+  border: 1px solid black
+  border-radius: 5px
+  min-width: 320px
+  max-height: 290px
+  padding: 1rem
+  display: flex
+  flex-direction: column
+  align-items: center
+  box-sizing: border-box
+
+.add-todo__title
+  margin: 1rem 0 1rem
+
+.add-todo__input
+  width: 90%
+
+.add-todo__btn
+  margin: 0 0 1rem
+  border-radius: 5px
+  border: 1.5px solid black
+  background-color: white
+  transition: 0.3s
+  width: 50%
+
+.add-todo__btn:hover
+  cursor: pointer
+  opacity: .6
+
+.add-todo__icon
+  background-image: url('../../assets/images/idea.svg')
+  width: 100px
+  height: 100px
+  margin: 1rem 0 1rem

@@ -1,0 +1,73 @@
+.todo__container
+  display: flex
+  gap: 1rem
+  position: relative
+  align-items: center
+  height: 30px
+  border-bottom: 1px solid black
+  padding: 0.5rem 0 0.5rem
+
+.todo__container_done
+  background-color: #E6FDD4
+
+.todo__checkbox
+  opacity: 0
+  width: 0
+  height: 0
+  line-height: 0
+  overflow: hidden
+  padding: 0
+  margin: 0
+  position: absolute
+
+
+.todo__fake-checkbox
+  width: 25px
+  height: 25px
+  border: none
+  background-image: url('../../assets/images/checkbox.svg')
+  background-position: cover
+  background-size: 30px 30px
+  background-repeat: no-repeat
+  width: 30px
+  height: 30px
+  transition: 0.3s
+
+.todo__fake-checkbox:hover
+  cursor: pointer
+  opacity: .6
+
+.todo__fake-checkbox_clicked
+  width: 25px
+  height: 25px
+  border: none
+  background-image: url('../../assets/images/checked.svg')
+  background-position: cover
+  background-size: 30px 30px
+  background-repeat: no-repeat
+  width: 30px
+  height: 30px
+  transition: 0.3s
+
+.todo__fake-checkbox_clicked:hover
+  cursor: pointer
+  opacity: .6
+
+.todo__delete-btn
+  margin-left: auto
+  background: none
+  border: none
+  background-image: url('../../assets/images/delete.svg')
+  background-position: cover
+  background-repeat: no-repeat
+  background-size: 30px 30px
+  width: 30px
+  height: 30px
+  transition: 0.3s
+
+.todo__delete-btn:hover
+  cursor: pointer
+  opacity: .6
+
+.todo__text_done
+  text-decoration: line-through
