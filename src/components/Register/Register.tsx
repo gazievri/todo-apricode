@@ -1,8 +1,8 @@
 import './Register.sass';
 import React, { useState } from 'react';
-import { IUser } from '../../types/user';
 import {register} from '../../utils/api.ts';
 import {NavLink, useNavigate} from 'react-router-dom'
+import userStore from '../../store/user.ts'
 
 interface IRegisterProps {
 
@@ -25,6 +25,7 @@ const Register: React.FC<IRegisterProps> = () => {
     register(userData)
     .then((res) => {
       console.log(res);
+
       navigate('/');
     })
     .catch(err => console.log(err))

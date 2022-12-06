@@ -1,4 +1,3 @@
-import { ITodo } from '../types/data';
 import { BASE_URL } from './constants.ts'
 
 // Запрос на авторизацию пользователя
@@ -22,7 +21,6 @@ export const register = (user) => {
     body: JSON.stringify(user)
   }).then(checkResponse);
 };
-
 
 // Запрос на список задач
 export const getTodos = async () => {

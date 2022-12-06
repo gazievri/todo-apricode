@@ -3,16 +3,14 @@ import './AddTodo.sass';
 import { useState, useRef, useEffect } from 'react'
 import { ITodo } from '../../types/data';
 import { sendTodo } from '../../utils/api.ts';
-import sortTodos from '../../utils/sortTodos.ts';
+import todosStore from '../../store/todo.js'
 
 interface IAddTodoProps {
   isOpened: boolean,
-  todos: ITodo[],
-  setTodos: (data: ITodo[]) => void,
   setIsOpened: (data: boolean) => void,
 }
 
-const AddTodo: React.FC<IAddTodoProps> = ({ isOpened, setTodos, todos, setIsOpened }) => {
+const AddTodo: React.FC<IAddTodoProps> = ({ isOpened, setIsOpened }) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState('');
@@ -20,25 +18,16 @@ const AddTodo: React.FC<IAddTodoProps> = ({ isOpened, setTodos, todos, setIsOpen
   // Обработчик добавления новой задачи
   const addTodo = () => {
     if (value) {
-      let newTodos: ITodo[];
-
-      const todo = {
+      // Создание объекта нового todo
+      const todo: ITodo = {
         id: Date.now(),
         title: value,
         complete: false
       }
-
+      // Отправка нового todo на сервер
       sendTodo(todo)
       .then(res => {
-        // Добавление нового Todo массив
-        newTodos = [...todos, {
-        id: Date.now(),
-        title: value,
-        complete: false
-        }];
-        // Сортировка массива Todos
-        sortTodos(newTodos)
-        setTodos(newTodos);
+        todosStore.addTodo(res);
         setValue("");
         setIsOpened(false);
       })

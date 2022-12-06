@@ -1,24 +1,18 @@
 import React from 'react';
 import './TodoList.sass';
 import TodoItem from '../TodoItem/TodoItem.tsx';
-import { ITodo } from '../../types/data'
+import todoStore from '../../store/todo'
+import {toJS} from 'mobx'
+import {observer} from 'mobx-react-lite'
 
-interface ITodoListProps {
-  items: ITodo[],
-  toggleTodo: (id: number) => void,
-  deleteTodo: (id: number) => void,
-}
-
-const TodoList: React.FC<ITodoListProps> = (props) => {
-  const {items, toggleTodo, deleteTodo} = props;
-
+const TodoList: React.FC = observer(() => {
   return (
     <ul className='todo-list__container'>
       {
-        items.map(todo => <TodoItem key={todo.id} {...todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />)
+        toJS(todoStore.todos).map(todo => <TodoItem key={todo.id} {...todo} />)
       }
     </ul>
   )
-}
+})
 
 export default TodoList;

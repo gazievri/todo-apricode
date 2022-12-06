@@ -1,44 +1,17 @@
 import React from 'react';
 import './Main.sass';
-import { useState, useEffect, useRef } from 'react';
-import { ITodo } from '../../types/data'
+import { useState, useEffect } from 'react';
 import TodoList from '../../components/TodoList.tsx/TodoList.tsx';
 import AddTodo from '../../components/AddTodo/AddTodo.tsx';
-import { getTodos, deleteTodoApi, changeStatusTodoApi, activateFilterApi } from '../../utils/api.ts';
-import sortTodos from '../../utils/sortTodos.ts';
+import { getTodos, activateFilterApi } from '../../utils/api.ts';
+import todosStore from '../../store/todo.js';
+import {toJS} from 'mobx'
+import {observer} from 'mobx-react-lite';
 
-const Main: React.FC = () => {
-  const [todos, setTodos] = useState<ITodo[]>([]);
+const Main: React.FC = observer(() => {
   const [isOpened, setIsOpened] = useState(false)
 
-  // Обработка удаление todo по клику на кнопку удалить
-  const deleteTodo = (id: number): void => {
-    deleteTodoApi(id)
-    .then(res => setTodos(todos.filter(todo => todo.id !== id)))
-    .catch(err => console.log(err))
-  }
-
-  // Обработка клика по статусу todo (отправка данных на сервер и сохранение в стейт ответа от сервера)
-  const toggleTodo = (id: number): void => {
-    const newTodo = todos.find(item => item.id === id);
-    // Изменение статуса todo
-    if (newTodo) { newTodo.complete = !newTodo.complete; }
-
-    // Отправка запроса на сервер
-    changeStatusTodoApi(id, newTodo)
-    .then(res => {
-      let newTodos: ITodo[];
-      // Внесение изменений в массив с todo
-      newTodos = todos.map(todo => todo.id === res.id ? res : todo );
-      // Сортировка массива с todo
-      sortTodos(newTodos);
-      // Обновления стейта массива с todo
-      setTodos(newTodos);
-    })
-    .catch(err => console.log(err))
-  }
-
-  // Обработка клика по кнопке отрыть модальное окно Добавление нового todo
+  // Обработка клика по кнопке открыть модальное окно Добавление нового todo
   const handleOpenAddTodo = (): void => {
     setIsOpened(true);
   }
@@ -58,14 +31,16 @@ const Main: React.FC = () => {
 
     // Запрос на сервер
     activateFilterApi(query)
-    .then(res => setTodos(res))
+    .then(res => todosStore.setAllTodos(res))
     .catch(err => console.log(err))
   }
 
-  // Загрузка всех todo из с сервера при загрузке страницы
+  // Загрузка всех todo с сервера при загрузке страницы
   useEffect(() => {
     getTodos()
-    .then(res => setTodos(sortTodos(res)))
+    .then(res => {
+      todosStore.setAllTodos(res)
+    })
     .catch(err => console.log(err))
   }, [])
 
@@ -79,14 +54,14 @@ const Main: React.FC = () => {
         </div>
         <div className='main__info'>
           <div className='main__info-icon' />
-          <h2 className='main__info-data'>{`${todos.filter(item => item.complete === true).length} / ${todos.length}`}</h2>
+          <h2 className='main__info-data'>{`${toJS(todosStore.todos).filter(item => item.complete === true).length} / ${toJS(todosStore.todos).length}`}</h2>
           <button className='main__add-btn' type="button" onClick={handleOpenAddTodo} />
         </div>
       </div>
-      <TodoList items={todos} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />
-      <AddTodo isOpened={isOpened} setTodos={setTodos} todos={todos} setIsOpened={setIsOpened} />
+      <TodoList />
+      <AddTodo isOpened={isOpened} setIsOpened={setIsOpened} />
     </section>
   )
-}
+})
 
 export default Main;

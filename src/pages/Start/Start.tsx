@@ -3,8 +3,9 @@ import Login from '../../components/Login/Login.tsx';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../utils/api.ts';
 import { IUser } from '../../types/user';
+import { observer } from 'mobx-react-lite';
 
-const Start: React.FC = () => {
+const Start: React.FC = observer(() => {
   const navigate = useNavigate();
 
   const handleLogin = (userData: IUser) => {
@@ -20,6 +21,6 @@ const Start: React.FC = () => {
       <Login handleLogin={handleLogin} />
     </section>
   )
-}
+})
 
 export default Start;
