@@ -7,9 +7,7 @@ class User {
   }
 
   saveUser(userData) {
-    console.log(userData)
     this.user = userData
-    console.log(this.user, '!!!')
   }
 }
 
